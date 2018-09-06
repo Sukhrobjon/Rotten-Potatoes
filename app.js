@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express()
+var exphbs = require('express-handlebars');
 
+// app.get('/', (req, res) => {
+//   res.render('home', { msg: 'Hello World!' });
+// })
+// INDEX
 app.get('/', (req, res) => {
-  res.render('home', { msg: 'Hello World!' });
+  res.render('reviews-index', { reviews: reviews });
 })
 
 app.listen(3000, () => {
@@ -10,7 +15,18 @@ app.listen(3000, () => {
 })
 
 
-var exphbs = require('express-handlebars');
+
+
+// OUR MOCK ARRAY OF PROJECTS
+let reviews = [
+  { title: "Great Review" },
+  { title: "Next Review" }
+]
+
+// INDEX
+app.get('/reviews', (req, res) => {
+  res.render('reviews-index', { reviews: reviews });
+})
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
