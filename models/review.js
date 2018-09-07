@@ -1,11 +1,13 @@
 
-var mongoose = require('mongoose');
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //MODEL
-module.exports = mongoose.model('Review', {
+const ReviewSchema = new Schema({
   title: String,
   description: String,
   movieTitle: String,
   rating: Number
 });
+
+module.exports = mongoose.model('Review', ReviewSchema);
