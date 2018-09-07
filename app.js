@@ -4,6 +4,9 @@ const app = express()
 const reviews = require('./controllers/reviews');// connecting to reviews.js file
 var exphbs = require('express-handlebars');
 
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
+
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 
