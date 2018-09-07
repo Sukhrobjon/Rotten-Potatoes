@@ -6,7 +6,7 @@ var exphbs = require('express-handlebars');
 const port = process.env.PORT || 3000;
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rotten-potatoes');
 
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
