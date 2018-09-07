@@ -18,6 +18,9 @@
     "mongoose": "^5.2.13"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.7.0"
+  },
+  "engine": {
       "node": "10.9.0"
   }
 }
