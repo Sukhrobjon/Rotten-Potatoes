@@ -2,21 +2,21 @@ const express = require('express')
 const methodOverride = require('method-override')
 const app = express()
 const reviews = require('./controllers/reviews');// connecting to reviews.js file
-var exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const port = process.env.PORT || 3000;
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser'); // INITIALIZE BODY-PARSER AND ADD IT TO APP
 
-var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rotten-potatoes');
 
+// MIDDLEWARE
 // override with POST having ?_method=DELETE or ?_method=PUT
-app.use(methodOverride('_method'))
-
-
-// INITIALIZE BODY-PARSER AND ADD IT TO APP
-const bodyParser = require('body-parser');
+app.use(methodOverride('_method'));
 
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Static content
+// app.use(express.static("./public"));
 
 
 //MIDDLEWARE
@@ -27,19 +27,13 @@ app.set('view engine', 'handlebars');
 
 reviews(app);
 
-// Index
-// app.get('/', (req, res) => {
-//   Review.find()
-//     .then(reviews => {
-//       res.render('reviews-index', { reviews: reviews });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-// })
 
+// Mongoose connection
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/rotten-potatoes';
+mongoose.connect( mongoUri, { useNewUrlParser: true});
+mongoose.set('debug', true);
 
-module.exports = app;
+// module.exports = app;
 app.listen(port, () => {
   console.log('App listening on port 3000!')
 })
