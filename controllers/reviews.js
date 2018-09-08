@@ -1,9 +1,12 @@
-const Review = require('../models/review')
+const express = require('express');
+const app = express();
+const Review = require('../models/review.js');
 
-module.exports = function (app) {
+
 
 // INDEX
   app.get('/', (req, res) => {
+      console.log("HERE!!!!")
     Review.find()
       .then(reviews => {
         res.render('reviews-index', {reviews: reviews});
@@ -67,4 +70,4 @@ module.exports = function (app) {
     })
   })
 
-}
+module.exports = app;

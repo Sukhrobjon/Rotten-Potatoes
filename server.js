@@ -1,7 +1,7 @@
 const express = require('express')
 const methodOverride = require('method-override')
 const app = express()
-const reviews = require('./controllers/reviews');// connecting to reviews.js file
+const reviewsController = require('./controllers/reviews.js');// connecting to reviews.js file
 const exphbs = require('express-handlebars');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
@@ -14,7 +14,7 @@ app.use(methodOverride('_method'));
 
 // The following line must appear AFTER const app = express() and before your routes!
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(reviewsController);
 // Static content
 // app.use(express.static("./public"));
 
@@ -22,10 +22,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //MIDDLEWARE
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-
-
-
-reviews(app);
 
 
 // Mongoose connection
