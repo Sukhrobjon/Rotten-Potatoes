@@ -1,13 +1,11 @@
 
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes', {useNewUrlParser: true});
 
 //MODEL
-const ReviewSchema = new Schema({
+module.exports = mongoose.model('Review', {
   title: String,
   description: String,
   movieTitle: String,
   rating: Number
 });
-
-module.exports = mongoose.model('Review', ReviewSchema);
