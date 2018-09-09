@@ -2,6 +2,8 @@
 // const app = express();
 
 const Review = require('../models/review');
+const Comment = require('../models/comment.js');
+
 
 module.exports = function(app) {
 
@@ -16,20 +18,6 @@ module.exports = function(app) {
       });
   });
 
-  // NEW
-  app.get('/reviews/new', (req, res) => {
-    res.render('reviews-new', {});
-  })
-
-  // SHOW
-  app.get('/reviews/:id', (req, res) => {
-    Review.findById(req.params.id).then((review) => {
-      res.render('reviews-show', { review: review })
-    }).catch((err) => {
-      console.log(err.message);
-    })
-  })
-
   // CREATE
   app.post('/reviews', (req, res) => {
     Review.create(req.body).then((review) => {
@@ -39,6 +27,29 @@ module.exports = function(app) {
       console.log(err.message);
     })
   })
+
+  // NEW
+  app.get('/reviews/new', (req, res) => {
+    res.render('reviews-new', {});
+  })
+
+  // SHOW
+  app.get('/reviews/:id', (req, res) => {
+    Review.findById(req.params.id).then((review) => {
+        Comment.find({reviewId: review._id}).then(comments => {
+          res.render('reviews-show', {
+            review: review,
+            comments: comments
+          })
+        })
+
+
+    }).catch((err) => {
+      console.log(err.message);
+    })
+  });
+
+
 
 
   //EDIT
@@ -70,4 +81,4 @@ module.exports = function(app) {
     })
   })
 
-}
+};
