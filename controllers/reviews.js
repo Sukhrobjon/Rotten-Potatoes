@@ -8,15 +8,15 @@ const Comment = require('../models/comment.js');
 module.exports = function(app) {
 
 // INDEX
-  app.get('/', (req, res) => {
-    Review.find()
-      .then(reviews => {
-        res.render('reviews-index', {reviews: reviews});
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
+  // app.get('/', (req, res) => {
+  //   Review.find()
+  //     .then(reviews => {
+  //       res.render('reviews-index', {reviews: reviews});
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // });
 
   // CREATE
   app.post('/reviews', (req, res) => {

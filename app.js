@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 //routers
 const reviews = require('./controllers/reviews');
 const comments = require('./controllers/comments');
+const movies = require('./movies');
 
 //mongodb
 const mongoose = require("mongoose");
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //linkinig the routes
 reviews(app);
 comments(app);
+movies(app);
 
 // PORT
 app.listen(port, () => {
