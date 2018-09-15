@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 //routers
 const reviews = require('./controllers/reviews');
 const comments = require('./controllers/comments');
-const movies = require('./movies');
+const movies = require('./controllers/movies');
 
 //mongodb
 const mongoose = require("mongoose");
