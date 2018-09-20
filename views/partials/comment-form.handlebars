@@ -2,6 +2,8 @@
 
 {{!-- <form action="/movies/:movieId/reviews/:id/comments" method="post"> --}}
 <form action="#" id="newComment">
+    <input type="hidden" value="{{review.movieId}}" name="movieId">
+
     <input type="hidden" value="{{review._id}}" name="reviewId">
     <fieldset>
         <legend>Add a Comment</legend>

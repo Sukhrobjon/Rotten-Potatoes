@@ -1,32 +1,32 @@
-// const express = require('express');
-// const app = express();
 
 const Review = require('../models/review');
 const Comment = require('../models/comment.js');
 
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-/*INDEX
-  app.get('/', (req, res) => {
-    Review.find()
-      .then(reviews => {
-        res.render('reviews-index', {reviews: reviews});
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });*/
+  /*INDEX
+    app.get('/', (req, res) => {
+      Review.find()
+        .then(reviews => {
+          res.render('reviews-index', {reviews: reviews});
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    });*/
 
 
   // NEW
   app.get('/movies/:movieId/reviews/new', (req, res) => {
-    res.render('reviews-new', { movieId: req.params.movieId });
+    res.render('reviews-new', {
+      movieId: req.params.movieId
+    });
   });
-  
+
   // CREATE
   app.post('/movies/:movieId/reviews', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     Review.create(req.body)
       .then(review => {
         console.log(review)
@@ -39,9 +39,14 @@ module.exports = function(app) {
   // SHOW
   app.get('/movies/:movieId/reviews/:id', (req, res) => {
     Review.findById(req.params.id).then((review) => {
-        Comment.find({reviewId: review._id}).then(comments => {
-          res.render('reviews-show', { review: review, comments: comments });
+      Comment.find({
+        reviewId: review._id
+      }).then(comments => {
+        res.render('reviews-show', {
+          review: review,
+          comments: comments
         });
+      });
     }).catch((err) => {
       console.log(err.message);
     })
@@ -52,8 +57,10 @@ module.exports = function(app) {
 
   //EDIT
   app.get('/movies/:movieId/reviews/:id/edit', function (req, res) {
-    Review.findById(req.params.id, function(err, review) {
-      res.render('reviews-edit', {review: review});
+    Review.findById(req.params.id, function (err, review) {
+      res.render('reviews-edit', {
+        review: review
+      });
     })
   })
 
@@ -78,5 +85,5 @@ module.exports = function(app) {
       console.log(err.message);
     });
   });
-  
+
 };
