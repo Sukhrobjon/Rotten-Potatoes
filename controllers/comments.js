@@ -1,5 +1,5 @@
 const Comment = require('../models/comment.js');
-const Review = require('../models/review.js')
+// const Review = require('../models/review.js')
 module.exports = function (app) {
 
     // CREATE Comment
@@ -18,7 +18,7 @@ module.exports = function (app) {
 
 
     // DELETE
-    app.delete('/movies/:moviesId/reviews/comments/:id', function (req, res) {
+    app.delete('/movies/:movieId/reviews/comments/:id', function (req, res) {
         console.log("DELETE comment")
         Comment.findByIdAndRemove(req.params.id).then((comment) => {
             res.redirect(`/movies/:moviesId/reviews/${comment.reviewId}`);

@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 reviews(app);
 comments(app);
 movies(app);
+app.use(express.static('public'));
 
 // PORT
 app.listen(port, () => {
