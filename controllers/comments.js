@@ -21,10 +21,11 @@ module.exports = function (app) {
     app.delete('/movies/:movieId/reviews/comments/:id', function (req, res) {
         console.log("DELETE comment")
         Comment.findByIdAndRemove(req.params.id).then((comment) => {
-            res.redirect(`/movies/:moviesId/reviews/${comment.reviewId}`);
+            res.status(200).send(comment);
         }).catch((err) => {
             console.log(err.message);
-        })
+            reg.status(400).send(err);
+        });
     });
 
 };
