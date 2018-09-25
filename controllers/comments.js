@@ -1,5 +1,5 @@
 const Comment = require('../models/comment.js');
-// const Review = require('../models/review.js')
+
 module.exports = function (app) {
 
     // CREATE Comment

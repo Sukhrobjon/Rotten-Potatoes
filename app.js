@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 const reviews = require('./controllers/reviews');
 const comments = require('./controllers/comments');
 const movies = require('./controllers/movies');
+const admin = require('./controllers/admin');
 
 //mongodb
 const mongoose = require("mongoose");
@@ -29,6 +30,7 @@ reviews(app);
 comments(app);
 movies(app);
 app.use(express.static('public'));
+admin(app);
 
 // PORT
 app.listen(port, () => {

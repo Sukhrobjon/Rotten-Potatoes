@@ -58,7 +58,24 @@ window.onload = function () {
             })
             .catch(error => {
                 console.log(error);
-                alert("fuck")
+               
             });
     });
+
+    // I NEED TO REPLACE THIS WITH JQUERY
+    // document.getElementById('delete-comment').addEventListener('click', (e) => {
+    //     console.log("click!")
+    //     let commentId = this.getAttribute('data-comment-id')
+    //     axios.delete(`/reviews/comments/${commentId}`)
+    //         .then(response => {
+    //             console.log(response)
+    //             comment = document.getElementById(commentId)
+    //             comment.parentNode.removeChild(comment); // OR comment.style.display = 'none';
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //             alert('There was an error deleting this comment.')
+    //         });
+    // })
+
 }

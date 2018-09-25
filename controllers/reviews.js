@@ -1,21 +1,9 @@
 
-const Review = require('../models/review');
+const Review = require('../models/review.js');
 const Comment = require('../models/comment.js');
 
 
 module.exports = function (app) {
-
-  /*INDEX
-    app.get('/', (req, res) => {
-      Review.find()
-        .then(reviews => {
-          res.render('reviews-index', {reviews: reviews});
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    });*/
-
 
   // NEW
   app.get('/movies/:movieId/reviews/new', (req, res) => {
@@ -56,7 +44,7 @@ module.exports = function (app) {
 
 
   //EDIT
-  app.get('/movies/:movieId/reviews/:id/edit', function (req, res) {
+  app.get('/movies/:movieId/reviews/:id/edit', (req, res) => {
     Review.findById(req.params.id, function (err, review) {
       res.render('reviews-edit', {
         review: review
@@ -77,7 +65,7 @@ module.exports = function (app) {
 
 
   // DELETE
-  app.delete('/movies/:movieId/reviews/:id', function (req, res) {
+  app.delete('/movies/:movieId/reviews/:id', (req, res) => {
     console.log("DELETE review")
     Review.findByIdAndRemove(req.params.id).then((review) => {
       res.redirect(`/movies/${review.movieId}`)

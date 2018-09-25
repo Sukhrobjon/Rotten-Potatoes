@@ -2,7 +2,7 @@ const express = require('express');
 const app = express.Router();
 const MovieDb = require('moviedb-promise');
 const moviedb = new MovieDb('35f16fb600ebe05de39a92fb561a38ae');
-const Review = require('../models/review');
+const Review = require('../models/review.js');
 
 module.exports = function(app) {
     app.get('/', (req, res) => {
