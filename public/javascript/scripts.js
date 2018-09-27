@@ -7,6 +7,11 @@ let reviewId = currentPath[4];
 
 window.onload = function () {
 
+    document.querySelector('.delete-review').addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("hello");
+    })
+
     // we get the form from the handlebard/html form
     let newCommentForm = document.getElementById("newComment");
     document.getElementById("newComment").addEventListener("submit", e => {
@@ -22,19 +27,22 @@ window.onload = function () {
 
                 // we get the comment on a JSON format from the response
                 let newComment = response.data.comment;
+                let index = document.querySelectorAll(".card").length
+
                 newCommentForm.reset();
 
 
                 $('#comments').prepend(
                 `
-                    <div class="card" id="${response.data.comment._id}">
+                    <div class = "card" id = "${newComment._id}">
                         <div class="card-block">
+                        <h4 class="card-fowl">${newComment.title}<h4>
                         <p class="card-text">${newComment.content}</p>
                             <p>
             
-                                <button class="btn btn-link delete-comment"  data-comment-id=${response.data.comment._id}>Delete</button>
-                            </p>
-                        </div>
+                            <button class="btn btn-link delete-comment" id="delete-comment-${index}" type="button" onclick="deleteComment(${index});" data-comment-id=${newComment._id}>Delete</button>                            </p>
+                        
+                            </div>
                     </div>
                 `
                 );
@@ -45,37 +53,24 @@ window.onload = function () {
             });
     });
 
-    document.querySelector('.delete-comment').addEventListener('click', (e) => {
-        console.log('click!');
-        // let comment =
-        //  $(newCommentForm).serialize();
-        let commentId = $(e.target).attr('data-comment-id');
-        // let movieId = e.target.getAttribute('data-movie-id');
-        axios.delete(`/movies/${movieId}/reviews/comments/${commentId}`)
-            .then(response => {
-                console.log(response);
-                $(`#${commentId}`).remove();
-            })
-            .catch(error => {
-                console.log(error);
-               
-            });
-    });
+}
 
-    // I NEED TO REPLACE THIS WITH JQUERY
-    // document.getElementById('delete-comment').addEventListener('click', (e) => {
-    //     console.log("click!")
-    //     let commentId = this.getAttribute('data-comment-id')
-    //     axios.delete(`/reviews/comments/${commentId}`)
-    //         .then(response => {
-    //             console.log(response)
-    //             comment = document.getElementById(commentId)
-    //             comment.parentNode.removeChild(comment); // OR comment.style.display = 'none';
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //             alert('There was an error deleting this comment.')
-    //         });
-    // })
+function deleteComment(index) {
+    console.log('click!');
+    // let comment =
+    //  $(newCommentForm).serialize();
+    let commentId = $("#delete-comment-" + index).attr('data-comment-id');
+    let movieId = $("#movieId").val()
+    console.log(commentId)
+    console.log(movieId)
+    // let movieId = e.target.getAttribute('data-movie-id');
+    axios.delete(`/movies/${movieId}/reviews/comments/${commentId}`)
+        .then(response => {
+            console.log(response);
+            $(`#${commentId}`).remove();
+        })
+        .catch(error => {
+            console.log(error);
 
+        });
 }

@@ -5,8 +5,8 @@
     <h4 class="card-title">{{this.title}}</h4>
     <p class="card-text">{{this.content}}</p>
     <p>
-      <p><button class="btn btn-link delete-comment"  data-comment-id="{{this._id}}">Delete</button></p>
-      {{!-- <button class="btn btn-link delete-comment" id="deleteComment" data-comment-id={{this._id}} data-movie-id={{this.movieId}}>Delete</button> --}}
+      {{!-- <p><button class="btn btn-link delete-comment"  data-comment-id="{{this._id}}">Delete</button></p> --}}
+      <button class="btn btn-link delete-comment" id="delete-comment-{{@index}}" type="button" onclick="deleteComment({{@index}});" data-comment-id={{this._id}}>Delete</button>
     </p>
   </div>
 </div>
