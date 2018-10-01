@@ -1,9 +1,11 @@
 # Rotten-Potatoes
 
-1. Project of BEW-1.1 class @ Make School 
-2. It has full CRUD functionality. C-create, R-read, U-update, D-destroy
-3. The user can create reviews for movies and add comments for a review.
+- Project of BEW-1.1 class @ Make School 
 
+##Description
+- It has full CRUD functionality. C-create, R-read, U-update, D-destroy
+- The user can create reviews for movies and add comments for a review.
+- Admin Can see all the created reviews attached to movies
 
 ## Getting Started
 
