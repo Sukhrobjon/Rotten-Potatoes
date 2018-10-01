@@ -7,10 +7,7 @@ let reviewId = currentPath[4];
 
 window.onload = function () {
 
-    document.querySelector('.delete-review').addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log("hello");
-    })
+    
 
     // we get the form from the handlebard/html form
     let newCommentForm = document.getElementById("newComment");

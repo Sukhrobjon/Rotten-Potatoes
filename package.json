@@ -21,7 +21,8 @@
     "nodemon": "^1.18.4"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "dotenv": "^6.0.0"
   },
   "engine": {
     "node": "10.9.0"
